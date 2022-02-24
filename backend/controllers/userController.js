@@ -81,4 +81,15 @@ const generateToken = (id) => {
   });
 };
 
-module.exports = { registerUser, loginUser };
+//@desc GET CURRENT USER
+//@route /api/users/me
+const getMe = asyncHandler(async (req, res) => {
+  const user = {
+    id: req.user._id,
+    email: req.user.email,
+    name: req.user.name,
+  };
+  res.status(200).json(user);
+});
+
+module.exports = { registerUser, loginUser, getMe };
